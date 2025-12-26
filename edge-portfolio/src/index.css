@@ -1,0 +1,641 @@
+/* ================= RESET ================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* ================= APP ================= */
+
+.app {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background: radial-gradient(circle at top left,
+      #2dd4bf,
+      #1e3a8a,
+      #020617);
+  color: white;
+}
+
+/* ================= CONTAINER ================= */
+
+.cards-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* ================= GLASS CARD ================= */
+
+.glass-card {
+  position: absolute;
+  padding: 32px 40px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+  height: auto;
+
+  text-align: center;
+  opacity: 0.85;
+
+  transition:
+    transform 0.4s ease,
+    opacity 0.4s ease,
+    box-shadow 0.4s ease;
+
+  pointer-events: auto;
+
+  /* STABILITY FIX */
+  transform: translateZ(0);
+}
+
+.glass-card:hover:not(.active) {
+  opacity: 1;
+  transform: translateY(-10px) scale(1.05);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.35);
+  z-index: 12;
+}
+
+/* ================= MAIN CARD ================= */
+
+.main-card {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  pointer-events: none;
+}
+
+/* ================= POSITIONS ================= */
+
+/* LEFT */
+.about {
+  top: 22%;
+  left: 14%;
+}
+
+.projects {
+  bottom: 22%;
+  left: 12%;
+}
+
+.resume {
+  bottom: 5%;
+  left: 38%;
+}
+
+/* RIGHT */
+.skills {
+  top: 22%;
+  right: 14%;
+}
+
+.contact {
+  bottom: 22%;
+  right: 12%;
+}
+
+/* ================= ACTIVE CARD ================= */
+
+.glass-card.active {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1.15);
+  z-index: 20;
+  opacity: 1;
+  width: 560px;
+  min-height: max-content;
+  isolation: isolate;
+}
+
+/* fade others */
+.cards-container:has(.glass-card.active) .glass-card:not(.active) {
+  opacity: 0;
+  transform: scale(0.9);
+  pointer-events: none;
+}
+
+/* dim main card */
+.app:has(.glass-card.active) .main-card {
+  opacity: 0.25;
+  transform: translate(-50%, -50%) scale(0.9);
+}
+
+/* ================= TEXT ================= */
+
+.glass-card h1 {
+  font-size: 32px;
+  margin-bottom: 8px;
+}
+
+.glass-card h2 {
+  font-size: 30px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.glass-card p {
+  font-size: 16px;
+  opacity: 0.85;
+}
+
+/* ================= DETAIL CONTENT ================= */
+
+.detail-content {
+  margin-top: 28px;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: all 0.4s ease;
+}
+
+.glass-card.active .detail-content {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ================= ABOUT ================= */
+
+.glass-card.about .detail-content {
+  max-width: 56ch;
+  margin: 0 auto;
+  font-size: 17px;
+  line-height: 1.75;
+  opacity: 0.95;
+}
+
+.glass-card.about .detail-content p {
+  margin-bottom: 18px;
+}
+
+/* ================= SKILLS ================= */
+
+.skills-group {
+  position: relative;
+  padding-bottom: 26px;
+  margin-bottom: 26px;
+}
+
+.skills-group h4 {
+  font-size: 14px;
+  letter-spacing: 0.14em;
+  font-weight: 600;
+  text-transform: uppercase;
+  opacity: 0.75;
+  margin-bottom: 14px;
+}
+
+.skills-group::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 120px;
+  height: 1px;
+  transform: translateX(-50%);
+  background: linear-gradient(to right,
+      transparent,
+      rgba(255, 255, 255, 0.35),
+      transparent);
+}
+
+.skills-group:last-child::after {
+  display: none;
+}
+
+.skills-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  justify-content: center;
+}
+
+.skills-list span {
+  padding: 10px 18px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  font-size: 14px;
+  font-weight: 500;
+
+  opacity: 0;
+  transform: translateY(6px);
+  transition:
+    opacity 0.35s ease,
+    transform 0.35s ease,
+    box-shadow 0.35s ease,
+    background 0.35s ease;
+}
+
+.glass-card.active .skills-list span {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.skills-list span:hover {
+  background: rgba(255, 255, 255, 0.22);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.35),
+    0 8px 22px rgba(45, 212, 191, 0.35);
+  transform: translateY(-2px);
+}
+
+/* ================= PROJECTS ================= */
+
+.projects-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.project-card {
+  padding: 16px 18px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  text-align: left;
+}
+
+.project-card:hover {
+  background: rgba(255, 255, 255, 0.18);
+}
+
+/* ================= CONNECT ================= */
+
+/* ================= RESET ================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* ================= APP ================= */
+
+.app {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background: radial-gradient(circle at top left,
+      #2dd4bf,
+      #1e3a8a,
+      #020617);
+  color: white;
+}
+
+/* ================= CONTAINER ================= */
+
+.cards-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* ================= GLASS CARD ================= */
+
+.glass-card {
+  position: absolute;
+  padding: 32px 40px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+  height: auto;
+
+  text-align: center;
+  opacity: 0.85;
+
+  transition:
+    transform 0.4s ease,
+    opacity 0.4s ease,
+    box-shadow 0.4s ease;
+
+  pointer-events: auto;
+
+  /* STABILITY FIX */
+  transform: translateZ(0);
+}
+
+.glass-card:hover:not(.active) {
+  opacity: 1;
+  transform: translateY(-10px) scale(1.05);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.35);
+  z-index: 12;
+}
+
+/* ================= MAIN CARD ================= */
+
+.main-card {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  pointer-events: none;
+}
+
+/* ================= POSITIONS ================= */
+
+/* LEFT */
+.about {
+  top: 22%;
+  left: 14%;
+}
+
+.projects {
+  bottom: 22%;
+  left: 12%;
+}
+
+.resume {
+  bottom: 5%;
+  left: 38%;
+}
+
+/* RIGHT */
+.skills {
+  top: 22%;
+  right: 14%;
+}
+
+.contact {
+  bottom: 22%;
+  right: 12%;
+}
+
+/* ================= ACTIVE CARD ================= */
+
+.glass-card.active {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1.15);
+  z-index: 20;
+  opacity: 1;
+  width: 560px;
+  min-height: max-content;
+  isolation: isolate;
+}
+
+/* fade others */
+.cards-container:has(.glass-card.active) .glass-card:not(.active) {
+  opacity: 0;
+  transform: scale(0.9);
+  pointer-events: none;
+}
+
+/* dim main card */
+.app:has(.glass-card.active) .main-card {
+  opacity: 0.25;
+  transform: translate(-50%, -50%) scale(0.9);
+}
+
+/* ================= TEXT ================= */
+
+.glass-card h1 {
+  font-size: 32px;
+  margin-bottom: 8px;
+}
+
+.glass-card h2 {
+  font-size: 30px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.glass-card p {
+  font-size: 16px;
+  opacity: 0.85;
+}
+
+/* ================= DETAIL CONTENT ================= */
+
+.detail-content {
+  margin-top: 28px;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: all 0.4s ease;
+}
+
+.glass-card.active .detail-content {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ================= ABOUT ================= */
+
+.glass-card.about .detail-content {
+  max-width: 56ch;
+  margin: 0 auto;
+  font-size: 17px;
+  line-height: 1.75;
+  opacity: 0.95;
+}
+
+.glass-card.about .detail-content p {
+  margin-bottom: 18px;
+}
+
+/* ================= SKILLS ================= */
+
+.skills-group {
+  position: relative;
+  padding-bottom: 26px;
+  margin-bottom: 26px;
+}
+
+.skills-group h4 {
+  font-size: 14px;
+  letter-spacing: 0.14em;
+  font-weight: 600;
+  text-transform: uppercase;
+  opacity: 0.75;
+  margin-bottom: 14px;
+}
+
+.skills-group::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 120px;
+  height: 1px;
+  transform: translateX(-50%);
+  background: linear-gradient(to right,
+      transparent,
+      rgba(255, 255, 255, 0.35),
+      transparent);
+}
+
+.skills-group:last-child::after {
+  display: none;
+}
+
+.skills-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  justify-content: center;
+}
+
+.skills-list span {
+  padding: 10px 18px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  font-size: 14px;
+  font-weight: 500;
+
+  opacity: 0;
+  transform: translateY(6px);
+  transition:
+    opacity 0.35s ease,
+    transform 0.35s ease,
+    box-shadow 0.35s ease,
+    background 0.35s ease;
+}
+
+.glass-card.active .skills-list span {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.skills-list span:hover {
+  background: rgba(255, 255, 255, 0.22);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.35),
+    0 8px 22px rgba(45, 212, 191, 0.35);
+  transform: translateY(-2px);
+}
+
+/* ================= PROJECTS ================= */
+
+.projects-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.project-card {
+  padding: 16px 18px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  text-align: left;
+}
+
+.project-card:hover {
+  background: rgba(255, 255, 255, 0.18);
+}
+
+/* ================= CONNECT ================= */
+
+.connect-links {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 28px;
+  width: 100%;
+}
+
+
+.connect-item {
+  position: relative;
+  padding: 14px 20px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  color: white;
+  text-decoration: none;
+
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  width: 100%;
+  justify-content: center;
+
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease,
+    background 0.35s ease;
+}
+
+.connect-item:hover {
+  background: rgba(255, 255, 255, 0.22);
+  transform: translateY(-2px);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.35),
+    0 8px 22px rgba(45, 212, 191, 0.35);
+}
+
+.connect-item:focus-visible {
+  background: rgba(255, 255, 255, 0.22);
+  box-shadow:
+    0 0 0 2px rgba(45, 212, 191, 0.8),
+    0 10px 26px rgba(45, 212, 191, 0.45);
+}
+
+
+/* ================= ACCESSIBILITY ================= */
+
+.glass-card:focus-visible,
+.skills-list span:focus-visible,
+.connect-item:focus-visible {
+  outline: 2px solid #2dd4bf;
+  outline-offset: 4px;
+}
+
+.connect-item {
+  position: relative;
+  padding: 12px 18px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  color: white;
+  text-decoration: none;
+}
+
+/* ================= ACCESSIBILITY ================= */
+
+.glass-card:focus-visible,
+.skills-list span:focus-visible,
+.connect-item:focus-visible {
+  outline: 2px solid #2dd4bf;
+  outline-offset: 4px;
+}
+
+.glass-card.is-focused:not(.active) {
+  outline: 2px solid rgba(45, 212, 191, 0.9);
+  outline-offset: 6px;
+  opacity: 1;
+  transform: scale(1.02);
+}
