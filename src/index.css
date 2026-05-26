@@ -642,7 +642,7 @@ body, html, #root {
 /* Dot Grid Matrix (Skills) */
 .dots-grid-accent {
   position: absolute;
-  top: 24px;
+  bottom: 18px;
   right: 28px;
   pointer-events: none;
 }
@@ -1041,6 +1041,13 @@ body, html, #root {
 /* Active skills list */
 .skills-group {
   margin-bottom: 18px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+.skills-group:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: 0;
 }
 .skills-list {
   display: flex;
@@ -1050,7 +1057,7 @@ body, html, #root {
 }
 .skills-list span {
   font-size: 12px;
-  background: var(--theme-switch-bg);
+  background: rgba(255, 255, 255, 0.03);
   border: 1px solid var(--card-border);
   padding: 4px 12px;
   border-radius: 8px;
