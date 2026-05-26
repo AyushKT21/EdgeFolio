@@ -14,7 +14,7 @@ export default function ProjectsCard({ activeSection, setActiveSection, isFocuse
         </div>
         <div className="header-text">
           <h3>Projects</h3>
-          <p className="subtitle">Things I’ve built and shipped</p>
+          <p className="subtitle">Selected product work and UI systems I have built</p>
         </div>
       </div>
 
@@ -28,41 +28,32 @@ export default function ProjectsCard({ activeSection, setActiveSection, isFocuse
       {isActive && (
         <div className="detail-content projects-list" onClick={(e) => e.stopPropagation()}>
           <div className="project-card">
-            <h3>Interactive Portfolio</h3>
-            <p>
-              A state-driven React portfolio with morphing cards, keyboard
-              accessibility, and glassmorphism UI.
-            </p>
+            <h3>Insurance Journey Builder</h3>
+            <p>A configurable React flow for dynamic forms, validations, and multi-step insurance journeys.</p>
+            <div className="project-tech">
+              <span>React</span>
+              <span>TypeScript</span>
+              <span>Forms</span>
+            </div>
+          </div>
+
+          <div className="project-card">
+            <h3>Design-to-Code UI System</h3>
+            <p>A reusable component system built from Figma designs with responsive behavior and clean states.</p>
             <div className="project-tech">
               <span>React</span>
               <span>CSS</span>
-              <span>UI</span>
+              <span>Design</span>
             </div>
           </div>
 
           <div className="project-card">
-            <h3>Admin Form System</h3>
-            <p>
-              Dynamic form engine with validations, conditional logic, and
-              reusable components.
-            </p>
+            <h3>Performance-First Dashboard</h3>
+            <p>Enterprise dashboard work focused on API rendering, caching, and keeping interactions responsive.</p>
             <div className="project-tech">
               <span>React</span>
-              <span>Forms</span>
-              <span>Logic</span>
-            </div>
-          </div>
-
-          <div className="project-card">
-            <h3>Insurance Flow</h3>
-            <p>
-              Multi-step user flow handling dates, calculations, and API-ready
-              payloads.
-            </p>
-            <div className="project-tech">
-              <span>React</span>
-              <span>State</span>
-              <span>UX</span>
+              <span>APIs</span>
+              <span>Perf</span>
             </div>
           </div>
         </div>
@@ -70,3 +61,4 @@ export default function ProjectsCard({ activeSection, setActiveSection, isFocuse
     </div>
   );
 }
+

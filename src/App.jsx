@@ -20,6 +20,7 @@ const CARD_ORDER = [
 export default function App() {
   const [activeSection, setActiveSection] = useState(null);
   const [focusedIndex, setFocusedIndex] = useState(0);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [theme, setTheme] = useState(() => {
     return localStorage.getItem("portfolio-theme") || "dark";
   });
@@ -79,6 +80,11 @@ export default function App() {
     setTheme((prev) => (prev === "dark" ? "light" : "dark"));
   };
 
+  const handleSectionChange = (section) => {
+    setActiveSection(section);
+    setMobileMenuOpen(false);
+  };
+
   return (
     <div className="app">
       {/* Background Orbits & Planets */}
@@ -106,31 +112,31 @@ export default function App() {
         <nav className="header-nav">
           <button
             className={`nav-link ${activeSection === null ? "active" : ""}`}
-            onClick={() => setActiveSection(null)}
+            onClick={() => handleSectionChange(null)}
           >
             Home
           </button>
           <button
             className={`nav-link ${activeSection === "about" ? "active" : ""}`}
-            onClick={() => setActiveSection("about")}
+            onClick={() => handleSectionChange("about")}
           >
             About
           </button>
           <button
             className={`nav-link ${activeSection === "projects" ? "active" : ""}`}
-            onClick={() => setActiveSection("projects")}
+            onClick={() => handleSectionChange("projects")}
           >
             Projects
           </button>
           <button
             className={`nav-link ${activeSection === "skills" ? "active" : ""}`}
-            onClick={() => setActiveSection("skills")}
+            onClick={() => handleSectionChange("skills")}
           >
             Skills
           </button>
           <button
             className={`nav-link ${activeSection === "contact" ? "active" : ""}`}
-            onClick={() => setActiveSection("contact")}
+            onClick={() => handleSectionChange("contact")}
           >
             Contact
           </button>
@@ -197,6 +203,36 @@ export default function App() {
                 )}
               </span>
             </span>
+          </button>
+        </div>
+
+        <button
+          type="button"
+          className={`mobile-nav-toggle ${mobileMenuOpen ? "open" : ""}`}
+          onClick={() => setMobileMenuOpen((open) => !open)}
+          aria-label="Toggle navigation menu"
+          aria-expanded={mobileMenuOpen}
+        >
+          <span />
+          <span />
+          <span />
+        </button>
+
+        <div className={`mobile-nav-panel ${mobileMenuOpen ? "open" : ""}`}>
+          <button className={`nav-link ${activeSection === null ? "active" : ""}`} onClick={() => handleSectionChange(null)}>
+            Home
+          </button>
+          <button className={`nav-link ${activeSection === "about" ? "active" : ""}`} onClick={() => handleSectionChange("about")}>
+            About
+          </button>
+          <button className={`nav-link ${activeSection === "projects" ? "active" : ""}`} onClick={() => handleSectionChange("projects")}>
+            Projects
+          </button>
+          <button className={`nav-link ${activeSection === "skills" ? "active" : ""}`} onClick={() => handleSectionChange("skills")}>
+            Skills
+          </button>
+          <button className={`nav-link ${activeSection === "contact" ? "active" : ""}`} onClick={() => handleSectionChange("contact")}>
+            Contact
           </button>
         </div>
       </header>
