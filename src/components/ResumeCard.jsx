@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 export default function ResumeCard({
   activeSection,
@@ -8,14 +8,17 @@ export default function ResumeCard({
   const isActive = activeSection === "resume";
   const [showPreview, setShowPreview] = useState(false);
 
-  useEffect(() => {
-    if (!isActive) setShowPreview(false);
-  }, [isActive]);
+  const handleToggleResume = () => {
+    if (isActive) {
+      setShowPreview(false);
+    }
+    setActiveSection(isActive ? null : "resume");
+  };
 
   return (
     <div
       className={`glass-card resume ${isActive ? "active" : ""} ${isFocused ? "is-focused" : ""}`}
-      onClick={() => setActiveSection(isActive ? null : "resume")}
+      onClick={handleToggleResume}
     >
       <div className="card-top-header">
         <div className="badge-icon-wrap orange-badge">

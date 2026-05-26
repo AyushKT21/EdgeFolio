@@ -56,7 +56,7 @@ export default function ExperienceCard({ activeSection, setActiveSection, isFocu
           <div className="timeline">
             <div className="timeline-item">
               <span className="timeline-date">2024 - Present</span>
-              <h4>Software Engineer · Nvest</h4>
+              <h4>Software Engineer | Nvest</h4>
               <ul className="timeline-bullets">
                 <li>Developed and maintained enterprise-scale insurance platforms using React and TypeScript.</li>
                 <li>Built dynamic insurance journeys with configurable forms, validations, and conditional workflows.</li>
@@ -68,7 +68,7 @@ export default function ExperienceCard({ activeSection, setActiveSection, isFocu
             </div>
             <div className="timeline-item">
               <span className="timeline-date">2022 - 2024</span>
-              <h4>Frontend Developer · Techloom</h4>
+              <h4>Frontend Developer | Techloom</h4>
               <ul className="timeline-bullets">
                 <li>Developed client-facing web applications using React.js, JavaScript, HTML, and CSS.</li>
                 <li>Built modular and reusable UI components following component-driven architecture.</li>
@@ -83,3 +83,4 @@ export default function ExperienceCard({ activeSection, setActiveSection, isFocu
     </div>
   );
 }
+

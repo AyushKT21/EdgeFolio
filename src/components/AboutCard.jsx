@@ -28,16 +28,17 @@ export default function AboutCard({ activeSection, setActiveSection, isFocused }
 
       {isActive && (
         <div className="detail-content" onClick={(e) => e.stopPropagation()}>
-          <p>I'm a frontend developer focused on building clean and interactive user interfaces using React.</p>
-          <p>I enjoy breaking UI into reusable components and keeping code simple, readable, and maintainable.</p>
-          <p>I work with state, props, and modern CSS to create responsive layouts and smooth user interactions.</p>
           <p>
-            Currently, I'm improving my skills by building real-world projects and learning better patterns for scalable
-            frontend development.
+            I'm a frontend developer who focuses on building polished, practical interfaces that feel fast, clear, and easy to use.
+          </p>
+          <p>
+            I like turning complex product ideas into reusable components, clean layouts, and predictable user flows.
+          </p>
+          <p>
+            Most of my recent work has been around React, TypeScript, responsive UI, and making interfaces feel production-ready.
           </p>
         </div>
       )}
     </div>
   );
 }
-

@@ -15,7 +15,7 @@ export default function SkillsCard({ activeSection, setActiveSection, isFocused 
         </div>
         <div className="header-text">
           <h3>Skills</h3>
-          <p className="subtitle">Tech stack I work with and love</p>
+          <p className="subtitle">Tools and patterns I use to build reliable interfaces</p>
         </div>
       </div>
 
@@ -40,30 +40,35 @@ export default function SkillsCard({ activeSection, setActiveSection, isFocused 
       {isActive && (
         <div className="detail-content" onClick={(e) => e.stopPropagation()}>
           <div className="skills-group">
-            <h4>Frontend</h4>
+            <h4>Frontend Core</h4>
             <div className="skills-list">
               <span>React</span>
-              <span>JavaScript</span>
-              <span>CSS</span>
-              <span>Next.js</span>
-            </div>
-          </div>
-
-          <div className="skills-group">
-            <h4>Backend & Tooling</h4>
-            <div className="skills-list">
-              <span>Node.js</span>
-              <span>Express</span>
               <span>TypeScript</span>
-              <span>Git</span>
+              <span>JavaScript</span>
+              <span>HTML</span>
+              <span>CSS</span>
+              <span>Responsive UI</span>
             </div>
           </div>
 
           <div className="skills-group">
-            <h4>Database</h4>
+            <h4>Architecture & UI Systems</h4>
             <div className="skills-list">
-              <span>MongoDB</span>
-              <span>PostgreSQL</span>
+              <span>Component Design</span>
+              <span>Config-Driven UI</span>
+              <span>Reusable Patterns</span>
+              <span>REST APIs</span>
+              <span>Performance Tuning</span>
+            </div>
+          </div>
+
+          <div className="skills-group">
+            <h4>Tools</h4>
+            <div className="skills-list">
+              <span>Git</span>
+              <span>Next.js</span>
+              <span>Tailwind CSS</span>
+              <span>Figma</span>
             </div>
           </div>
         </div>
