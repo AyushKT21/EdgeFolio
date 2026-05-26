@@ -56,13 +56,26 @@ export default function ExperienceCard({ activeSection, setActiveSection, isFocu
           <div className="timeline">
             <div className="timeline-item">
               <span className="timeline-date">2024 - Present</span>
-              <h4>Software Engineer</h4>
-              <p>Leading frontend development, focusing on responsive architectures, state management, and modern component systems.</p>
+              <h4>Software Engineer · Nvest</h4>
+              <ul className="timeline-bullets">
+                <li>Developed and maintained enterprise-scale insurance platforms using React and TypeScript.</li>
+                <li>Built dynamic insurance journeys with configurable forms, validations, and conditional workflows.</li>
+                <li>Architected reusable component systems and config-driven UI modules used across multiple products.</li>
+                <li>Integrated REST APIs with caching, optimistic updates, and dynamic data mapping.</li>
+                <li>Optimized rendering performance using React.memo, lazy loading, and code-splitting strategies.</li>
+                <li>Worked on scalable frontend architecture supporting Motor, Health, and Reinsurance product flows.</li>
+              </ul>
             </div>
             <div className="timeline-item">
               <span className="timeline-date">2022 - 2024</span>
-              <h4>Frontend Developer</h4>
-              <p>Crafted high-fidelity web experiences, implemented reusable component libraries, and optimized application performance.</p>
+              <h4>Frontend Developer · Techloom</h4>
+              <ul className="timeline-bullets">
+                <li>Developed client-facing web applications using React.js, JavaScript, HTML, and CSS.</li>
+                <li>Built modular and reusable UI components following component-driven architecture.</li>
+                <li>Integrated backend APIs and handled dynamic data rendering inside React applications.</li>
+                <li>Created responsive layouts supporting desktop, tablet, and mobile devices.</li>
+                <li>Collaborated with designers to translate Figma designs into production-ready interfaces.</li>
+              </ul>
             </div>
           </div>
         </div>
