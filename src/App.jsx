@@ -21,6 +21,8 @@ export default function App() {
   const [activeSection, setActiveSection] = useState(null);
   const [focusedIndex, setFocusedIndex] = useState(0);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [showLoader, setShowLoader] = useState(true);
+  const [loaderStep, setLoaderStep] = useState(0);
   const [theme, setTheme] = useState(() => {
     return localStorage.getItem("portfolio-theme") || "dark";
   });
@@ -30,6 +32,18 @@ export default function App() {
     document.documentElement.className = theme;
     localStorage.setItem("portfolio-theme", theme);
   }, [theme]);
+
+  useEffect(() => {
+    const stepOneTimer = window.setTimeout(() => setLoaderStep(1), 500);
+    const stepTwoTimer = window.setTimeout(() => setLoaderStep(2), 1200);
+    const hideTimer = window.setTimeout(() => setShowLoader(false), 1900);
+
+    return () => {
+      window.clearTimeout(stepOneTimer);
+      window.clearTimeout(stepTwoTimer);
+      window.clearTimeout(hideTimer);
+    };
+  }, []);
 
   // Sync dynamic clock
   useEffect(() => {
@@ -87,6 +101,16 @@ export default function App() {
 
   return (
     <div className="app">
+      {showLoader && (
+        <div className="site-loader" aria-live="polite" aria-label="Loading portfolio">
+          <div className="site-loader-card">
+            <span className={`loader-word ${loaderStep >= 0 ? "visible" : ""}`}>Hello</span>
+            <span className={`loader-word ${loaderStep >= 1 ? "visible" : ""}`}>Namaste</span>
+            <span className={`loader-word ${loaderStep >= 2 ? "visible" : ""}`}>Welcome</span>
+          </div>
+        </div>
+      )}
+
       {/* Background Orbits & Planets */}
       <div className="space-orbit orbit-one" />
       <div className="space-orbit orbit-two" />
