@@ -359,8 +359,8 @@ body, html, #root {
 .nav-link.active {
   color: var(--text-primary);
 }
-/* dot indicator under active link */
-.nav-link.active::after {
+/* dot indicator under active link (desktop nav only) */
+.header-nav .nav-link.active::after {
   content: "";
   position: absolute;
   bottom: -2px;
@@ -504,7 +504,7 @@ body, html, #root {
   position: relative;
   width: 100%;
   max-width: 1200px;
-  height: 570px;
+  height: 632px;
   margin: 110px auto 70px;
   z-index: 5;
 }
@@ -808,7 +808,8 @@ body, html, #root {
 }
 
 .resume {
-  bottom: 0px;
+  top: 488px;
+  bottom: auto;
   left: 50%;
   transform: translateX(-50%);
   width: 540px;
@@ -829,7 +830,7 @@ body, html, #root {
   left: 50%;
   transform: translateX(-50%);
   width: 540px;
-  height: 265px;
+  height: 305px;
   border-color: rgba(59, 130, 246, 0.24);
   box-shadow: var(--shadow-card), 0 0 24px rgba(59, 130, 246, 0.06);
   display: flex;
@@ -892,7 +893,34 @@ body, html, #root {
   font-size: 14px;
   color: var(--text-secondary);
   font-weight: 400;
-  margin-bottom: 24px;
+  margin-bottom: 14px;
+}
+
+.ai-portfolio-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 9px 18px;
+  border-radius: 99px;
+  margin-bottom: 18px;
+  border: 1px solid rgba(168, 85, 247, 0.35);
+  background: linear-gradient(135deg, rgba(6, 182, 212, 0.1) 0%, rgba(168, 85, 247, 0.14) 100%);
+  color: var(--text-primary);
+  transition: var(--transition-fast);
+}
+.ai-portfolio-btn:hover {
+  border-color: var(--color-purple);
+  background: linear-gradient(135deg, rgba(6, 182, 212, 0.16) 0%, rgba(168, 85, 247, 0.22) 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(168, 85, 247, 0.18);
+}
+.ai-portfolio-btn-icon {
+  width: 14px;
+  height: 14px;
+  opacity: 0.85;
 }
 
 /* Central Tech Stack Badges */
@@ -922,6 +950,9 @@ body, html, #root {
 .tech-icon {
   width: 20px;
   height: 20px;
+}
+.tech-icon-ts {
+  display: block;
 }
 .rounded-svg {
   border-radius: 4px;
@@ -1013,6 +1044,15 @@ body, html, #root {
 .project-card:hover {
   background: rgba(255, 255, 255, 0.04);
   border-color: var(--text-muted);
+}
+.project-card-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+.project-card-link:hover {
+  border-color: rgba(168, 85, 247, 0.35);
 }
 .project-card h3 {
   font-size: 16px !important;
@@ -1417,7 +1457,7 @@ body, html, #root {
   .mobile-nav-panel .nav-link {
     width: 100%;
     text-align: left;
-    padding: 12px 2px;
+    padding: 12px 14px;
     border-radius: 14px;
     color: var(--text-primary);
   }
@@ -1426,33 +1466,86 @@ body, html, #root {
     background: var(--mobile-nav-hover);
   }
 
+  .mobile-nav-panel .nav-link.active {
+    background: rgba(59, 130, 246, 0.12);
+    color: var(--color-blue);
+    font-weight: 600;
+  }
+
+  .mobile-nav-panel .nav-link::after,
+  .mobile-nav-panel .nav-link::before {
+    content: none;
+    display: none;
+  }
+
   .portfolio-canvas {
     height: auto;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 20px;
-    padding: 95px 16px 85px;
+    align-items: stretch;
+    gap: 24px;
+    row-gap: 24px;
+    padding: 112px 16px 96px;
     margin: 0 auto;
     width: 100%;
     max-width: 600px;
   }
 
-  .portfolio-canvas .glass-card {
+  .portfolio-canvas .glass-card,
+  .portfolio-canvas .main-card {
     position: relative !important;
     top: auto !important;
     left: auto !important;
     right: auto !important;
     bottom: auto !important;
     width: 100% !important;
+    max-width: 100%;
     height: auto !important;
     min-height: 140px;
+    margin: 0 !important;
     transform: none !important;
     animation: none !important;
+    flex-shrink: 0;
+  }
+
+  .main-card:hover,
+  .resume:hover:not(.active),
+  .experience:hover:not(.active),
+  .glass-card:hover:not(.active) {
+    transform: none !important;
   }
 
   .main-card {
-    order: -1; /* Hero is always first on mobile stack */
+    order: 1;
+  }
+
+  .about {
+    order: 2;
+  }
+
+  .experience {
+    order: 3;
+  }
+
+  .projects {
+    order: 4;
+  }
+
+  .resume {
+    order: 5;
+  }
+
+  .skills {
+    order: 6;
+  }
+
+  .contact {
+    order: 7;
+  }
+
+  .portfolio-canvas:has(.glass-card.active) .glass-card:not(.active),
+  .portfolio-canvas:has(.glass-card.active) .main-card {
+    transform: none !important;
   }
 
   .glass-card.active {

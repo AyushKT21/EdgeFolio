@@ -11,6 +11,19 @@ export default function MainCard() {
 
       <p className="hero-subtitle">Frontend Developer | React | TypeScript | UI Systems</p>
 
+      <a
+        href="https://ask-ayush.vercel.app/"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="ai-portfolio-btn"
+      >
+        Wanna see my AI portfolio?
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="ai-portfolio-btn-icon" aria-hidden="true">
+          <path d="M7 17L17 7" />
+          <path d="M7 7h10v10" />
+        </svg>
+      </a>
+
       <div className="tech-stack-container">
         <div className="tech-badge" title="React">
           <svg viewBox="-11.5 -10.23174 23 20.46348" className="tech-icon react-spin">
@@ -32,9 +45,18 @@ export default function MainCard() {
         </div>
 
         <div className="tech-badge" title="TypeScript">
-          <svg viewBox="0 0 24 24" className="tech-icon rounded-svg">
+          <svg viewBox="0 0 24 24" className="tech-icon tech-icon-ts" aria-hidden="true">
             <rect width="24" height="24" rx="4" fill="#3178c6" />
-            <text x="12" y="17" fill="#ffffff" fontFamily="system-ui, sans-serif" fontSize="10" fontWeight="bold">
+            <text
+              x="12"
+              y="12"
+              fill="#ffffff"
+              fontFamily="system-ui, -apple-system, sans-serif"
+              fontSize="9"
+              fontWeight="700"
+              textAnchor="middle"
+              dominantBaseline="central"
+            >
               TS
             </text>
           </svg>
