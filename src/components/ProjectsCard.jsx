@@ -37,6 +37,22 @@ export default function ProjectsCard({ activeSection, setActiveSection, isFocuse
             </div>
           </div>
 
+          <a
+            href="https://ask-ayush.vercel.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="project-card project-card-link"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <h3>Ayush AI Portfolio</h3>
+            <p>Interactive AI portfolio — explore my work through conversation and guided navigation.</p>
+            <div className="project-tech">
+              <span>AI</span>
+              <span>React</span>
+              <span>Live</span>
+            </div>
+          </a>
+
           <div className="project-card">
             <h3>Design-to-Code UI System</h3>
             <p>A reusable component system built from Figma designs with responsive behavior and clean states.</p>
